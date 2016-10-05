@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ExampleEvent;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
@@ -12,6 +13,8 @@ class ExampleTest extends TestCase
     public function testExample()
     {
         $this->get('/');
+
+        event(new ExampleEvent);
 
         $this->assertEquals(
             $this->app->version(), $this->response->getContent()

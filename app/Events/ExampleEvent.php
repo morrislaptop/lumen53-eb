@@ -2,7 +2,10 @@
 
 namespace App\Events;
 
-class ExampleEvent extends Event
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class ExampleEvent extends Event implements ShouldBroadcast
 {
     /**
      * Create a new event instance.
@@ -12,5 +15,15 @@ class ExampleEvent extends Event
     public function __construct()
     {
         //
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array
+     */
+    public function broadcastOn() 
+    {
+    	return new Channel('seg-faults');
     }
 }
